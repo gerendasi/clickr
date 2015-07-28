@@ -4,8 +4,8 @@ int pos = 0;    // variable to store the servo position
 
 void setup() {
   myservo.attach(A0);  // attaches the servo on the A0 pin to the servo object
-  Spark.function("setpos", setPosition);
-  Spark.variable("getpos", &pos, INT);
+  Spark.function("setPos", setPosition);
+  Spark.variable("position", &pos, INT);
 }
 
 void loop() {
