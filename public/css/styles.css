@@ -1,0 +1,166 @@
+body {
+  background-image: linear-gradient(0deg, #ffffff, #9d9c9c);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%; }
+
+ul, ol, dl {
+  padding: 0;
+  margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: sf;
+  font-size: 5.5vmax;
+  text-align: center;
+  margin-top: 0;
+  padding-right: 15px;
+  padding-left: 15px; }
+
+@media only screen and (max-width: 750px) {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 8vmax; } }
+
+p {
+  font-family: sf;
+  font-size: 2vmax;
+  text-align: center;
+  padding-right: 15px;
+  padding-left: 15px; }
+
+@media only screen and (max-width: 750px) {
+  p {
+    font-size: 3.5vmax; } }
+
+a img {
+  border: none; }
+
+a:link {
+  color: #000;
+  text-decoration: none; }
+
+a:visited {
+  color: #000;
+  text-decoration: none; }
+
+a:hover, a:active, a:focus {
+  text-decoration: none; }
+
+.container {
+  font-family: sf;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 720px; }
+
+header {
+  font-family: sf;
+  font-size: 5px;
+  text-align: center;
+  vertical-align: middle;
+  padding-bottom: 0px;
+  padding-top: 15%; }
+
+.content {
+  font-family: sf;
+  padding: 10px 0;
+  width: 100%;
+  float: none;
+  max-width: 720px; }
+
+.content ul, .content ol {
+  padding: 0 15px 15px 40px; }
+
+ul.nav {
+  list-style: none;
+  border-top: 1px solid #666;
+  margin-bottom: 15px; }
+
+ul.nav li {
+  border-bottom: 1px solid #666; }
+
+ul.nav a, ul.nav a:visited {
+  padding: 5px 5px 5px 15px;
+  width: 160px;
+  text-decoration: none;
+  background-color: #FFFFFF; }
+
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
+  color: #5689f8;
+  text-decoration: underline; }
+
+footer {
+  padding: 10px 0;
+  position: relative;
+  clear: both; }
+
+header, section, footer, aside, article, figure {
+  font-family: sf;
+  max-width: 720px;
+  width: 100%; }
+
+form {
+  padding-left: 15px;
+  font-size: 1.3vmax; }
+
+textarea {
+  font-family: inherit;
+  height: 5em;
+  max-width: 90%;
+  font-size: 1.3vmax !important; }
+
+email {
+  font-family: inherit;
+  max-width: 90%;
+  font-size: 1.3vmax; }
+
+.submit {
+  text-align: center; }
+
+.click {
+  text-align: center; }
+
+Button {
+  -moz-box-shadow: 2px 2px 7px 0px #899599;
+  -webkit-box-shadow: 2px 2px 7px 0px #899599;
+  box-shadow: 2px 2px 7px 0px #899599;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+  background: -moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background: -webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background: -o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background: -ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+  background-color: #ededed;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-family: sf;
+  font-size: 3vmax;
+  font-style: normal;
+  padding: 3vmax 12vmax;
+  text-decoration: none;
+  text-shadow: 0px 2px 0px #e1e2ed; }
+
+@media only screen and (min-device-width: 275px) and (max-device-width: 840px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  button {
+    border-radius: 100px;
+    font-size: 7vmax;
+    padding: 4vmax 15vmax;
+    padding-top: 38%; }
+  button:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+    background: -moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background: -webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background: -o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background: -ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+    background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+    background-color: #bab1ba; }
+  button:active {
+    position: relative;
+    top: 1px; } }

@@ -8,10 +8,6 @@ body {
 	padding: 0;
     font-size: 100%;
 }
-@font-face {
-    font-family: sf;
-    src: url(/css/sf.otf);
-}
 ul, ol, dl {
 	padding: 0;
 	margin: 0;
@@ -98,7 +94,7 @@ ul.nav a, ul.nav a:visited {
 	background-color: #FFFFFF;
 }
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
-    color: #5689f8
+    color: #5689f8;
     text-decoration: underline;
 }
 footer {
@@ -154,7 +150,7 @@ Button {
     color:#000000;
     font-family:sf;
     font-size:3vmax;
-    font-style:;
+    font-style: normal;
     padding:3vmax 12vmax;
     text-decoration:none;
     text-shadow:0px 2px 0px #e1e2ed;
@@ -163,25 +159,25 @@ Button {
 and (min-device-width : 275px)
 and (max-device-width : 840px)
 and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio : 2)
-Button {
-    border-radius:100px;
-    font-size:7vmax;
-    padding:4vmax 15vmax;
-    padding-top: 38%;
+and (-webkit-min-device-pixel-ratio : 2) {
+    button {
+        border-radius:100px;
+        font-size:7vmax;
+        padding:4vmax 15vmax;
+        padding-top: 38%;
+    }
+    button:hover {
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+        background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+        background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+        background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+        background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+        background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+        background-color:#bab1ba;
+    }
+    button:active {
+        position:relative;
+        top:1px;
+    }
 }
-Button:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
-    background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
-    background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
-    background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
-    background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
-    background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
-    background-color:#bab1ba;
-}
-Button:active {
-    position:relative;
-    top:1px;
-}
-
