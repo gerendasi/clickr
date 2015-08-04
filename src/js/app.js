@@ -1,24 +1,29 @@
 var particle = require('spark'),
     $ = require('jquery'),
-    DEVICE_ID = '55ff6a065075555341101787',
+    React = require('react'),
+    DEVICE_ID = '54ff75066678574940470767',
     ACCESS_TOKEN = '9c0f99363411f0fd2c650ce1bbd8c0a5a3d4cd2e',
     refreshInterval = 1500;
 
-var clickr = {
-  init: function() {
-    clickr.initParticle();
-    clickr.initPosControl();
+var TheClickr = require('./theClickr');
+
+var ClickrView = React.createClass({
+  getInitialState: function() {
+    return {
+      startPos: 0,
+      clickPos: 180,
+      timeDown: 1000,
+      particleCore: {}
+    }
   },
-  initParticle: function() {
+  componentDidMount: function() {
+    var self = this;
     particle.on('login', function(err, body) {
       console.log('Particle Core login callback successful: ', body);
-      var deviceList = particle.listDevices();
-
-      deviceList.then(function(devices) {
-        particleCore = devices[0];
-        console.log('Particle Core device list found: ', devices);
-
-        clickr.pollClickrPos();
+      
+      particle.getDevice(DEVICE_ID, function(err, device) {
+        self.setState({particleCore: device});
+        console.log('Particle Core device found: ', device);
       });
     });
 
@@ -28,49 +33,61 @@ var clickr = {
       if (!err) console.log('Particle API login successful');
     });
   },
-  initPosControl: function() {
-    $('#plusbutton').on('click', function() {
-      clickr.setClickrPos('8');
-      clickr.sleep(320);
-    });
-    // TODO: Initialising the position control here
-  },
-  pollClickrPos: function() {
-    window.setInterval(function() {
-      particleCore.getVariable('position', function(err, data) {
-        console.log('Received position ', data.result);
+  sendNewSettings: function() {
+    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown+',';
 
-        document.getElementById("curPos").innerHTML = data.result + "&deg;";
-        document.getElementById("curPos").style.fontSize = "2vmax";
-      });
-    }, refreshInterval);
-  },
-  setClickrPos: function(newPos) {
-    particleCore.callFunction('setPos', newPos, function(result) {
-      console.log('Moved Clickr to ', newPos);
-      //document.getElementById("degBoxId").value = newPos;
+    this.state.particleCore.callFunction('settings', values, function(result) {
+        console.log('Settings changing to ', values);
     });
   },
-  moveClickrPos: function(amount) {
-    var currentValue = parseInt(document.getElementById('curPos').innerHTML),
-        newValue = amount + currentValue;
+  handleStartPosChange: function(e) {
+    var newPos = e.target.value,
+        values;
 
-    clickr.setClickrPos(newValue);
-    document.getElementById("degBoxId").value = newValue;
+    this.setState({
+      startPos: newPos
+    });
+
+    //this.sendNewSettings();
   },
-  sleep: function(ms) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > ms) {
-            break;
-        }
-    }
+  handleClickPosChange: function(e) {
+    var newPos = e.target.value;
+    this.setState({
+      clickPos: e.target.value
+    });
 
-    clickr.setClickrPos(35);
+    //this.sendNewSettings();
+  },
+  handleTimeDownChange: function(e) {
+    var newTime = e.target.value;
+    this.setState({
+      timeDown: e.target.value
+    });
+
+    console.log('Timedown changed to ', e.target.value, this.state.timeDown);
+
+    //this.sendNewSettings();
+  },
+  getClickrValues: function() {
+    this.state.particleCore.getVariable('timeDown', function(err, data) {
+      console.log(data);
+    });
+  },
+  render: function() {
+    return (
+      <div>
+        <TheClickr startPos={this.state.startPos} clickPos={this.state.clickPos} timeDown={this.state.timeDown} particleCore={this.state.particleCore} />
+
+        <input type="text" value={this.state.startPos} onChange={this.handleStartPosChange} />
+        <input type="text" value={this.state.clickPos} onChange={this.handleClickPosChange} />
+        <input type="text" value={this.state.timeDown} onChange={this.handleTimeDownChange} />
+
+        <div className="btn-submit" onClick={this.sendNewSettings}>Update options</div>
+
+        <div onClick={this.getClickrValues}>Get Clickr Values</div>
+      </div>
+    )
   }
-};
+});
 
-(function($) {
-  console.log('Working');
-  clickr.init();
-}($));
+React.render(<ClickrView />, document.getElementById('app'));

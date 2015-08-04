@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 	/* ------------- JS ------------- */
 	browserify = require('browserify'),
 	watchify = require('watchify'),
+	reactify = require('reactify'),
 
 	// For parsing in text streams into Browserify
 	source = require('vinyl-source-stream'),
@@ -40,6 +41,8 @@ function runBrowserify() {
 				packageCache: {},
 				fullPaths: true
 			});
+
+	b.transform(reactify);
 
 	b = watchify(b);
 

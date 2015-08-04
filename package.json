@@ -24,12 +24,14 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
     "gulp-util": "^3.0.6",
+    "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.3.0"
   },
   "dependencies": {
     "browser-request": "^0.3.3",
     "jquery": "^2.1.4",
+    "react": "^0.13.3",
     "spark": "^0.5.10"
   }
 }
