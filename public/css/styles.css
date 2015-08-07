@@ -3,36 +3,15 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;
+  font-family: Tahoma, sans-serif;
   margin: 0;
   padding: 0;
   font-size: 100%; }
 
-ul, ol, dl {
-  padding: 0;
-  margin: 0; }
-
 h1, h2, h3, h4, h5, h6 {
-  font-family: sf;
-  font-size: 5.5vmax;
-  text-align: center;
-  margin-top: 0;
-  padding-right: 15px;
-  padding-left: 15px; }
-
-@media only screen and (max-width: 750px) {
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 8vmax; } }
-
-p {
-  font-family: sf;
-  font-size: 2vmax;
-  text-align: center;
-  padding-right: 15px;
-  padding-left: 15px; }
-
-@media only screen and (max-width: 750px) {
-  p {
-    font-size: 3.5vmax; } }
+  font-family: Tahoma;
+  margin: 0;
+  padding: 0 0 0.5em; }
 
 a img {
   border: none; }
@@ -49,79 +28,18 @@ a:hover, a:active, a:focus {
   text-decoration: none; }
 
 .container {
-  font-family: sf;
-  width: 100%;
   margin: 0 auto;
-  max-width: 720px; }
-
-header {
-  font-family: sf;
-  font-size: 5px;
-  text-align: center;
-  vertical-align: middle;
-  padding-bottom: 0px;
-  padding-top: 15%; }
-
-.content {
-  font-family: sf;
-  padding: 10px 0;
-  width: 100%;
-  float: none;
-  max-width: 720px; }
-
-.content ul, .content ol {
-  padding: 0 15px 15px 40px; }
-
-ul.nav {
-  list-style: none;
-  border-top: 1px solid #666;
-  margin-bottom: 15px; }
-
-ul.nav li {
-  border-bottom: 1px solid #666; }
-
-ul.nav a, ul.nav a:visited {
-  padding: 5px 5px 5px 15px;
-  width: 160px;
-  text-decoration: none;
-  background-color: #FFFFFF; }
-
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
-  color: #5689f8;
-  text-decoration: underline; }
-
-footer {
-  padding: 10px 0;
-  position: relative;
-  clear: both; }
-
-header, section, footer, aside, article, figure {
-  font-family: sf;
   max-width: 720px;
+  text-align: center;
   width: 100%; }
 
-form {
-  padding-left: 15px;
-  font-size: 1.3vmax; }
+.form-elem {
+  padding: 0 0 1em; }
 
-textarea {
-  font-family: inherit;
-  height: 5em;
-  max-width: 90%;
-  font-size: 1.3vmax !important; }
+.the-clickr {
+  padding: 30px 0; }
 
-email {
-  font-family: inherit;
-  max-width: 90%;
-  font-size: 1.3vmax; }
-
-.submit {
-  text-align: center; }
-
-.click {
-  text-align: center; }
-
-Button {
+.btn {
   -moz-box-shadow: 2px 2px 7px 0px #899599;
   -webkit-box-shadow: 2px 2px 7px 0px #899599;
   box-shadow: 2px 2px 7px 0px #899599;
@@ -139,20 +57,22 @@ Button {
   display: inline-block;
   cursor: pointer;
   color: #000000;
-  font-family: sf;
-  font-size: 3vmax;
   font-style: normal;
-  padding: 3vmax 12vmax;
+  padding: 10px;
   text-decoration: none;
   text-shadow: 0px 2px 0px #e1e2ed; }
 
+.btn--clickr {
+  font-size: 3vmax;
+  padding: 3vmax 12vmax; }
+
 @media only screen and (min-device-width: 275px) and (max-device-width: 840px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  button {
+  .btn--clickr {
     border-radius: 100px;
     font-size: 7vmax;
     padding: 4vmax 15vmax;
     padding-top: 38%; }
-  button:hover {
+  .btn--clickr:hover {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
     background: -moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
     background: -webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
@@ -161,6 +81,6 @@ Button {
     background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
     background-color: #bab1ba; }
-  button:active {
+  .btn--clickr:active {
     position: relative;
     top: 1px; } }

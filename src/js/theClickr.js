@@ -9,7 +9,9 @@ var React = require('react'),
 	},
 	render: function() {
 		return (
-			<div className="btn-clickr" onClick={this.clickrClick}>Click</div>
+			<div className="the-clickr">
+				<div className="the-clickr__btn btn btn--clickr" onClick={this.clickrClick}>Click</div>
+			</div>
 		)
 	}
 });

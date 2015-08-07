@@ -5,7 +5,9 @@ var particle = require('spark'),
     ACCESS_TOKEN = '9c0f99363411f0fd2c650ce1bbd8c0a5a3d4cd2e',
     refreshInterval = 1500;
 
-var TheClickr = require('./theClickr');
+var TheClickr = require('./theClickr'),
+    ClickrSlider = require('./clickrSlider'),
+    ClickrSeconds = require('./clickrSeconds');
 
 var ClickrView = React.createClass({
   getInitialState: function() {
@@ -78,13 +80,18 @@ var ClickrView = React.createClass({
       <div>
         <TheClickr startPos={this.state.startPos} clickPos={this.state.clickPos} timeDown={this.state.timeDown} particleCore={this.state.particleCore} />
 
-        <input type="text" value={this.state.startPos} onChange={this.handleStartPosChange} />
-        <input type="text" value={this.state.clickPos} onChange={this.handleClickPosChange} />
-        <input type="text" value={this.state.timeDown} onChange={this.handleTimeDownChange} />
+        <h2>Starting position</h2>
+        <ClickrSlider max="180" value={this.state.startPos} whenChanged={this.handleStartPosChange} />
 
-        <div className="btn-submit" onClick={this.sendNewSettings}>Update options</div>
+        <h2>Clicked position</h2>
+        <ClickrSlider max="180" value={this.state.clickPos} whenChanged={this.handleClickPosChange} />
 
-        <div onClick={this.getClickrValues}>Get Clickr Values</div>
+        <h2>Time pressed</h2>
+        <ClickrSeconds value={this.state.timeDown} whenChanged={this.handleTimeDownChange} />
+
+        <div className="btn btn--submit" onClick={this.sendNewSettings}>Update options</div>
+
+        <div className="btn btn--get-values" onClick={this.getClickrValues}>Get Clickr Values</div>
       </div>
     )
   }

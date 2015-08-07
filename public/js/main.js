@@ -34570,7 +34570,9 @@ var particle = require('spark'),
     ACCESS_TOKEN = '9c0f99363411f0fd2c650ce1bbd8c0a5a3d4cd2e',
     refreshInterval = 1500;
 
-var TheClickr = require('./theClickr');
+var TheClickr = require('./theClickr'),
+    ClickrSlider = require('./clickrSlider'),
+    ClickrSeconds = require('./clickrSeconds');
 
 var ClickrView = React.createClass({displayName: "ClickrView",
   getInitialState: function() {
@@ -34643,13 +34645,18 @@ var ClickrView = React.createClass({displayName: "ClickrView",
       React.createElement("div", null, 
         React.createElement(TheClickr, {startPos: this.state.startPos, clickPos: this.state.clickPos, timeDown: this.state.timeDown, particleCore: this.state.particleCore}), 
 
-        React.createElement("input", {type: "text", value: this.state.startPos, onChange: this.handleStartPosChange}), 
-        React.createElement("input", {type: "text", value: this.state.clickPos, onChange: this.handleClickPosChange}), 
-        React.createElement("input", {type: "text", value: this.state.timeDown, onChange: this.handleTimeDownChange}), 
+        React.createElement("h2", null, "Starting position"), 
+        React.createElement(ClickrSlider, {max: "180", value: this.state.startPos, whenChanged: this.handleStartPosChange}), 
 
-        React.createElement("div", {className: "btn-submit", onClick: this.sendNewSettings}, "Update options"), 
+        React.createElement("h2", null, "Clicked position"), 
+        React.createElement(ClickrSlider, {max: "180", value: this.state.clickPos, whenChanged: this.handleClickPosChange}), 
 
-        React.createElement("div", {onClick: this.getClickrValues}, "Get Clickr Values")
+        React.createElement("h2", null, "Time pressed"), 
+        React.createElement(ClickrSeconds, {value: this.state.timeDown, whenChanged: this.handleTimeDownChange}), 
+
+        React.createElement("div", {className: "btn btn--submit", onClick: this.sendNewSettings}, "Update options"), 
+
+        React.createElement("div", {className: "btn btn--get-values", onClick: this.getClickrValues}, "Get Clickr Values")
       )
     )
   }
@@ -34657,7 +34664,60 @@ var ClickrView = React.createClass({displayName: "ClickrView",
 
 React.render(React.createElement(ClickrView, null), document.getElementById('app'));
 
-},{"./theClickr":"/Users/patcat/Web/Clickr/clickr/src/js/theClickr.js","jquery":"/Users/patcat/Web/Clickr/clickr/node_modules/jquery/dist/jquery.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","spark":"/Users/patcat/Web/Clickr/clickr/node_modules/spark/lib/spark.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/theClickr.js":[function(require,module,exports){
+},{"./clickrSeconds":"/Users/patcat/Web/Clickr/clickr/src/js/clickrSeconds.js","./clickrSlider":"/Users/patcat/Web/Clickr/clickr/src/js/clickrSlider.js","./theClickr":"/Users/patcat/Web/Clickr/clickr/src/js/theClickr.js","jquery":"/Users/patcat/Web/Clickr/clickr/node_modules/jquery/dist/jquery.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","spark":"/Users/patcat/Web/Clickr/clickr/node_modules/spark/lib/spark.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSeconds.js":[function(require,module,exports){
+var React = require('react'),
+	ClickrSlider = React.createClass({displayName: "ClickrSlider",
+	getDefaultProps: function() {
+		return {
+			value: 0,
+			min: 0,
+			max: 100,
+			whenChanged: function() {console.log('No function set for slider!')},
+			step: 1
+		}
+	},
+	render: function() {
+		return (
+			React.createElement("div", {className: "form-elem form-elem--seconds"}, 
+				React.createElement("input", {type: "text", value: this.props.value, onChange: this.props.whenChanged})
+			)
+		)
+	}
+});
+
+module.exports = ClickrSlider;
+
+},{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSlider.js":[function(require,module,exports){
+var React = require('react'),
+	ClickrSlider = React.createClass({displayName: "ClickrSlider",
+	getDefaultProps: function() {
+		return {
+			value: 0,
+			min: 0,
+			max: 100,
+			whenChanged: function() {console.log('No function set for slider!')},
+			step: 1
+		}
+	},
+	render: function() {
+		return (
+			React.createElement("div", {className: "form-elem form-elem--slider"}, 
+				React.createElement("input", {
+					type: "range", 
+					value: this.props.value, 
+					min: this.props.min, 
+					max: this.props.max, 
+					onChange: this.props.whenChanged, 
+					step: this.props.step}), 
+				React.createElement("input", {type: "text", value: this.props.value, onChange: this.props.whenChanged})
+			)
+		)
+	}
+});
+
+module.exports = ClickrSlider;
+
+},{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/theClickr.js":[function(require,module,exports){
 var React = require('react'),
 	TheClickr = React.createClass({displayName: "TheClickr",
 	clickrClick: function() {
@@ -34669,7 +34729,9 @@ var React = require('react'),
 	},
 	render: function() {
 		return (
-			React.createElement("div", {className: "btn-clickr", onClick: this.clickrClick}, "Click")
+			React.createElement("div", {className: "the-clickr"}, 
+				React.createElement("div", {className: "the-clickr__btn btn btn--clickr", onClick: this.clickrClick}, "Click")
+			)
 		)
 	}
 });
