@@ -38,10 +38,7 @@ a:hover, a:active, a:focus {
     width: 100%;
 }
 
-.the-clickr {
-    padding: 30px 0;
-}
-
+@import "the-clickr";
 @import "box";
 @import "form-elem";
 @import "btn";

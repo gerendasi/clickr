@@ -34751,7 +34751,8 @@ var React = require('react'),
 	render: function() {
 		return (
 			React.createElement("div", {className: "the-clickr"}, 
-				React.createElement("div", {className: "the-clickr__btn btn btn--clickr", onClick: this.clickrClick}, "Click")
+				React.createElement("div", {className: "the-clickr__btn btn btn--clickr", onClick: this.clickrClick}, "Click"), 
+				React.createElement("div", {className: "the-clickr__help-text"}, "Click the button above to press your clickr!")
 			)
 		)
 	}

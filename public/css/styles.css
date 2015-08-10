@@ -43,6 +43,10 @@ a:hover, a:active, a:focus {
 
 .the-clickr {
   padding: 30px 0; }
+  .the-clickr__help-text {
+    padding: 20px 0 0;
+    font-size: 14.4px;
+    font-size: 0.9rem; }
 
 .box {
   background: rgba(255, 255, 255, 0.2);

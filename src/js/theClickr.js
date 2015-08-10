@@ -11,6 +11,7 @@ var React = require('react'),
 		return (
 			<div className="the-clickr">
 				<div className="the-clickr__btn btn btn--clickr" onClick={this.clickrClick}>Click</div>
+				<div className="the-clickr__help-text">Click the button above to press your clickr!</div>
 			</div>
 		)
 	}
