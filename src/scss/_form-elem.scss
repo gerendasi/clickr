@@ -5,6 +5,12 @@
     	@include font-size(1);
     }
 
+    &__help-text {
+    	padding: 5px 0;
+    	text-align: center;
+    	@include font-size(0.8);
+    }
+
     & * {
     	margin: 0 auto;
     }

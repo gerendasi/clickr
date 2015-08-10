@@ -1,21 +1,19 @@
 var React = require('react'),
-	ClickrSlider = React.createClass({
+	ClickrSeconds = React.createClass({
 	getDefaultProps: function() {
 		return {
 			value: 0,
-			min: 0,
-			max: 100,
-			whenChanged: function() {console.log('No function set for slider!')},
-			step: 1
+			whenChanged: function() {console.log('No function set for slider!')}
 		}
 	},
 	render: function() {
 		return (
 			<div className="form-elem form-elem--seconds">
-				<input type="text" value={this.props.value} onChange={this.props.whenChanged} />
+				<input className="form-elem__input" type="text" value={this.props.value} onChange={this.props.whenChanged} />
+				<div className="form-elem__help-text">(seconds)</div>
 			</div>
 		)
 	}
 });
 
-module.exports = ClickrSlider;
+module.exports = ClickrSeconds;

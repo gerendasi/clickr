@@ -34579,7 +34579,7 @@ var ClickrView = React.createClass({displayName: "ClickrView",
     return {
       startPos: 0,
       clickPos: 180,
-      timeDown: 1000,
+      timeDown: 1,
       particleCore: {}
     }
   },
@@ -34601,7 +34601,7 @@ var ClickrView = React.createClass({displayName: "ClickrView",
     });
   },
   sendNewSettings: function() {
-    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown+',';
+    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown*1000+',';
 
     this.state.particleCore.callFunction('settings', values, function(result) {
         console.log('Settings changing to ', values);
@@ -34672,26 +34672,24 @@ React.render(React.createElement(ClickrView, null), document.getElementById('app
 
 },{"./clickrSeconds":"/Users/patcat/Web/Clickr/clickr/src/js/clickrSeconds.js","./clickrSlider":"/Users/patcat/Web/Clickr/clickr/src/js/clickrSlider.js","./theClickr":"/Users/patcat/Web/Clickr/clickr/src/js/theClickr.js","jquery":"/Users/patcat/Web/Clickr/clickr/node_modules/jquery/dist/jquery.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","spark":"/Users/patcat/Web/Clickr/clickr/node_modules/spark/lib/spark.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSeconds.js":[function(require,module,exports){
 var React = require('react'),
-	ClickrSlider = React.createClass({displayName: "ClickrSlider",
+	ClickrSeconds = React.createClass({displayName: "ClickrSeconds",
 	getDefaultProps: function() {
 		return {
 			value: 0,
-			min: 0,
-			max: 100,
-			whenChanged: function() {console.log('No function set for slider!')},
-			step: 1
+			whenChanged: function() {console.log('No function set for slider!')}
 		}
 	},
 	render: function() {
 		return (
 			React.createElement("div", {className: "form-elem form-elem--seconds"}, 
-				React.createElement("input", {type: "text", value: this.props.value, onChange: this.props.whenChanged})
+				React.createElement("input", {className: "form-elem__input", type: "text", value: this.props.value, onChange: this.props.whenChanged}), 
+				React.createElement("div", {className: "form-elem__help-text"}, "(seconds)")
 			)
 		)
 	}
 });
 
-module.exports = ClickrSlider;
+module.exports = ClickrSeconds;
 
 },{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSlider.js":[function(require,module,exports){
 var React = require('react'),

@@ -14,7 +14,7 @@ var ClickrView = React.createClass({
     return {
       startPos: 0,
       clickPos: 180,
-      timeDown: 1000,
+      timeDown: 1,
       particleCore: {}
     }
   },
@@ -36,7 +36,7 @@ var ClickrView = React.createClass({
     });
   },
   sendNewSettings: function() {
-    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown+',';
+    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown*1000+',';
 
     this.state.particleCore.callFunction('settings', values, function(result) {
         console.log('Settings changing to ', values);
