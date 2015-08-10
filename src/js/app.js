@@ -80,14 +80,20 @@ var ClickrView = React.createClass({
       <div>
         <TheClickr startPos={this.state.startPos} clickPos={this.state.clickPos} timeDown={this.state.timeDown} particleCore={this.state.particleCore} />
 
-        <h2>Starting position</h2>
-        <ClickrSlider max="180" value={this.state.startPos} whenChanged={this.handleStartPosChange} />
+        <div className="box">
+          <h2 className="title">Starting position</h2>
+          <ClickrSlider max="180" value={this.state.startPos} whenChanged={this.handleStartPosChange} />
+        </div>
 
-        <h2>Clicked position</h2>
-        <ClickrSlider max="180" value={this.state.clickPos} whenChanged={this.handleClickPosChange} />
+        <div className="box">
+          <h2 className="title">Clicked position</h2>
+          <ClickrSlider max="180" value={this.state.clickPos} whenChanged={this.handleClickPosChange} />
+        </div>
 
-        <h2>Time pressed</h2>
-        <ClickrSeconds value={this.state.timeDown} whenChanged={this.handleTimeDownChange} />
+        <div className="box">
+          <h2 className="title">Time pressed</h2>
+          <ClickrSeconds value={this.state.timeDown} whenChanged={this.handleTimeDownChange} />
+        </div>
 
         <div className="btn btn--submit" onClick={this.sendNewSettings}>Update options</div>
 

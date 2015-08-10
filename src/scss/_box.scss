@@ -1,0 +1,12 @@
+.box {
+	background: rgba(255,255,255,0.2);
+	border: 1px solid rgba(255,255,255,0.3);
+	margin: 0 auto 20px;
+	padding: 10px;
+	width: 300px;
+
+	.title {
+		color: #333;
+		@include font-size(1.2);
+	}
+}

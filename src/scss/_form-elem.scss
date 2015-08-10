@@ -1,0 +1,11 @@
+.form-elem {
+    input[type="text"],
+    &__currentLabel {
+    	text-align: center;
+    	@include font-size(1);
+    }
+
+    & * {
+    	margin: 0 auto;
+    }
+}

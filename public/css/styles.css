@@ -1,15 +1,18 @@
-body {
+.gradient--chrome, body {
   background-image: linear-gradient(0deg, #ffffff, #9d9c9c);
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; }
+
+body {
   background-attachment: fixed;
-  height: 100%;
   font-family: Tahoma, sans-serif;
+  font-size: 16px;
+  height: 100%;
   margin: 0;
-  padding: 0;
-  font-size: 100%; }
+  padding: 0; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Tahoma;
+  font-weight: normal;
   margin: 0;
   padding: 0 0 0.5em; }
 
@@ -33,11 +36,28 @@ a:hover, a:active, a:focus {
   text-align: center;
   width: 100%; }
 
-.form-elem {
-  padding: 0 0 1em; }
-
 .the-clickr {
   padding: 30px 0; }
+
+.box {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0 auto 20px;
+  padding: 10px;
+  width: 300px; }
+  .box .title {
+    color: #333;
+    font-size: 19.2px;
+    font-size: 1.2rem; }
+
+.form-elem input[type="text"],
+.form-elem__currentLabel {
+  text-align: center;
+  font-size: 16px;
+  font-size: 1rem; }
+
+.form-elem * {
+  margin: 0 auto; }
 
 .btn {
   -moz-box-shadow: 2px 2px 7px 0px #899599;
@@ -51,25 +71,31 @@ a:hover, a:active, a:focus {
   background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
   background-color: #ededed;
-  -moz-border-radius: 100px;
-  -webkit-border-radius: 100px;
-  border-radius: 100px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #333;
   display: inline-block;
   cursor: pointer;
-  color: #000000;
+  color: #fff;
   font-style: normal;
-  padding: 10px;
-  text-decoration: none;
-  text-shadow: 0px 2px 0px #e1e2ed; }
+  margin: 0 0.5em;
+  padding: 10px 20px;
+  text-decoration: none; }
+  .btn:active {
+    background-color: #111; }
 
 .btn--clickr {
   -moz-border-radius: 200px;
   -webkit-border-radius: 200px;
+  background: url(../images/logo-clickr.png) center center no-repeat #333;
+  background-size: 80% 80%;
   border-radius: 200px;
   font-size: 3vmax;
-  padding: 0;
-  height: 15vmax;
   line-height: 15vmax;
+  height: 15vmax;
+  text-indent: -9999px;
+  padding: 0;
   width: 15vmax; }
 
 @media only screen and (min-device-width: 275px) and (max-device-width: 840px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
@@ -90,3 +116,9 @@ a:hover, a:active, a:focus {
   .btn--clickr:active {
     position: relative;
     top: 1px; } }
+
+.is-visible {
+  display: block; }
+
+.is-hidden {
+  display: none; }

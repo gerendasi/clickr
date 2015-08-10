@@ -1,0 +1,12 @@
+// --------------------------------------------------
+// 		Mixins
+// --------------------------------------------------
+@mixin font-size($size: 1) {
+	font-size: ($size * 16) + px;
+	font-size: $size + rem;
+}
+
+.gradient--chrome {
+	background-image: linear-gradient(0deg, #ffffff, #9d9c9c);
+    background-repeat: no-repeat;
+}

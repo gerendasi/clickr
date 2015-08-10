@@ -1,5 +1,10 @@
 var React = require('react'),
 	ClickrSlider = React.createClass({
+	getInitialState: function() {
+		return {
+			inputVisible: false
+		}
+	},
 	getDefaultProps: function() {
 		return {
 			value: 0,
@@ -8,6 +13,16 @@ var React = require('react'),
 			whenChanged: function() {console.log('No function set for slider!')},
 			step: 1
 		}
+	},
+	closeInput: function() {
+		this.setState({
+	      inputVisible: false
+	    });
+	},
+	openInput: function() {
+		this.setState({
+	      inputVisible: true
+	    });
 	},
 	render: function() {
 		return (
@@ -19,7 +34,9 @@ var React = require('react'),
 					max={this.props.max}
 					onChange={this.props.whenChanged}
 					step={this.props.step} />
-				<input type="text" value={this.props.value} onChange={this.props.whenChanged} />
+
+				<div className={!this.state.inputVisible ? "form-elem__currentLabel is-visible" : "form-elem__currentLabel is-hidden"} onClick={this.openInput}>{this.props.value}</div>
+				<input className={this.state.inputVisible ? "form-elem__editField is-visible" : "form-elem__editField is-hidden"} type="text" value={this.props.value} onChange={this.props.whenChanged} onBlur={this.closeInput} />
 			</div>
 		)
 	}

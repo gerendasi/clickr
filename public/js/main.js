@@ -34645,14 +34645,20 @@ var ClickrView = React.createClass({displayName: "ClickrView",
       React.createElement("div", null, 
         React.createElement(TheClickr, {startPos: this.state.startPos, clickPos: this.state.clickPos, timeDown: this.state.timeDown, particleCore: this.state.particleCore}), 
 
-        React.createElement("h2", null, "Starting position"), 
-        React.createElement(ClickrSlider, {max: "180", value: this.state.startPos, whenChanged: this.handleStartPosChange}), 
+        React.createElement("div", {className: "box"}, 
+          React.createElement("h2", {className: "title"}, "Starting position"), 
+          React.createElement(ClickrSlider, {max: "180", value: this.state.startPos, whenChanged: this.handleStartPosChange})
+        ), 
 
-        React.createElement("h2", null, "Clicked position"), 
-        React.createElement(ClickrSlider, {max: "180", value: this.state.clickPos, whenChanged: this.handleClickPosChange}), 
+        React.createElement("div", {className: "box"}, 
+          React.createElement("h2", {className: "title"}, "Clicked position"), 
+          React.createElement(ClickrSlider, {max: "180", value: this.state.clickPos, whenChanged: this.handleClickPosChange})
+        ), 
 
-        React.createElement("h2", null, "Time pressed"), 
-        React.createElement(ClickrSeconds, {value: this.state.timeDown, whenChanged: this.handleTimeDownChange}), 
+        React.createElement("div", {className: "box"}, 
+          React.createElement("h2", {className: "title"}, "Time pressed"), 
+          React.createElement(ClickrSeconds, {value: this.state.timeDown, whenChanged: this.handleTimeDownChange})
+        ), 
 
         React.createElement("div", {className: "btn btn--submit", onClick: this.sendNewSettings}, "Update options"), 
 
@@ -34690,6 +34696,11 @@ module.exports = ClickrSlider;
 },{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSlider.js":[function(require,module,exports){
 var React = require('react'),
 	ClickrSlider = React.createClass({displayName: "ClickrSlider",
+	getInitialState: function() {
+		return {
+			inputVisible: false
+		}
+	},
 	getDefaultProps: function() {
 		return {
 			value: 0,
@@ -34698,6 +34709,16 @@ var React = require('react'),
 			whenChanged: function() {console.log('No function set for slider!')},
 			step: 1
 		}
+	},
+	closeInput: function() {
+		this.setState({
+	      inputVisible: false
+	    });
+	},
+	openInput: function() {
+		this.setState({
+	      inputVisible: true
+	    });
 	},
 	render: function() {
 		return (
@@ -34709,7 +34730,9 @@ var React = require('react'),
 					max: this.props.max, 
 					onChange: this.props.whenChanged, 
 					step: this.props.step}), 
-				React.createElement("input", {type: "text", value: this.props.value, onChange: this.props.whenChanged})
+
+				React.createElement("div", {className: !this.state.inputVisible ? "form-elem__currentLabel is-visible" : "form-elem__currentLabel is-hidden", onClick: this.openInput}, this.props.value), 
+				React.createElement("input", {className: this.state.inputVisible ? "form-elem__editField is-visible" : "form-elem__editField is-hidden", type: "text", value: this.props.value, onChange: this.props.whenChanged, onBlur: this.closeInput})
 			)
 		)
 	}
