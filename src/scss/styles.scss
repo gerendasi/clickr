@@ -69,8 +69,14 @@ a:hover, a:active, a:focus {
 }
 
 .btn--clickr {
-    font-size:3vmax;
-    padding:3vmax 12vmax;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    border-radius: 200px;
+    font-size: 3vmax;
+    padding: 0;
+    height: 15vmax;
+    line-height: 15vmax;
+    width: 15vmax;
 }
 @media only screen
 and (min-device-width : 275px)
