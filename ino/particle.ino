@@ -4,6 +4,36 @@ int startPos = 0; // clickr starting position
 int clickPos = 180;    // clickr clicked position
 int timeDown = 1000; // time for servo to remain pressed
 
+char settingsBundle[64] = "0,180,1000"; // Bundled settings for sending back to the app
+
+// EEPROM storage for settings
+uint8_t startPosByte;
+uint8_t clickPosByte;
+uint8_t timeDownByte;
+
+int startAddr = 1;
+int clickAddr = 2;
+int timeDownAddr = 3;
+
+void loadSettingsFromEEPROM() {
+    uint8_t startPosByte = EEPROM.read(startAddr);
+    uint8_t clickPosByte = EEPROM.read(clickAddr);
+    //uint8_t timeDownByte = EEPROM.read(timeDownAddr);
+    
+    startPos = (int) startPosByte;
+    clickPos = (int) clickPosByte;
+    //timeDown = (int) timeDownByte;
+    
+    String values = "";
+    values += startPos;
+    values += ",";
+    values += clickPos;
+    values += ",";
+    values += timeDown;
+    
+    values.toCharArray(settingsBundle, 64);
+}
+
 void setup() {
   // Servo pin allocation
   myservo.attach(A0);
@@ -16,6 +46,9 @@ void setup() {
   Spark.variable("startPos", &startPos, INT);
   Spark.variable("clickPos", &clickPos, INT);
   Spark.variable("timeDown", &timeDown, INT);
+  Spark.variable("settings", &settingsBundle, STRING);
+  
+  loadSettingsFromEEPROM();
 }
 
 void loop() {
@@ -62,6 +95,16 @@ int setClickrSettings(String values) {
     startPos = startValue.toInt();
     clickPos = clickValue.toInt();
     timeDown = timeDownValue.toInt();
+    
+    startPosByte = (uint8_t) startPos;
+    clickPosByte = (uint8_t) clickPos;
+    timeDownByte = (uint8_t) timeDown;
+    
+    EEPROM.write(startAddr, startPosByte);
+    EEPROM.write(clickAddr, clickPosByte);
+    //EEPROM.write(timeDownAddr, timeDownByte);
+    
+    values.toCharArray(settingsBundle, 64);
     
     toStart();
 

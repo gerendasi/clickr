@@ -34568,7 +34568,8 @@ var particle = require('spark'),
     React = require('react'),
     DEVICE_ID = '54ff75066678574940470767',
     ACCESS_TOKEN = '9c0f99363411f0fd2c650ce1bbd8c0a5a3d4cd2e',
-    refreshInterval = 1500;
+    refreshInterval = 1500,
+    timeDownConversion = 1000;
 
 var TheClickr = require('./theClickr'),
     ClickrSlider = require('./clickrSlider'),
@@ -34590,6 +34591,7 @@ var ClickrView = React.createClass({displayName: "ClickrView",
       
       particle.getDevice(DEVICE_ID, function(err, device) {
         self.setState({particleCore: device});
+        self.getClickrValues();
         console.log('Particle Core device found: ', device);
       });
     });
@@ -34601,7 +34603,7 @@ var ClickrView = React.createClass({displayName: "ClickrView",
     });
   },
   sendNewSettings: function() {
-    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown*1000+',';
+    var values = this.state.startPos+','+this.state.clickPos+','+this.state.timeDown*timeDownConversion+',';
 
     this.state.particleCore.callFunction('settings', values, function(result) {
         console.log('Settings changing to ', values);
@@ -34636,9 +34638,31 @@ var ClickrView = React.createClass({displayName: "ClickrView",
     //this.sendNewSettings();
   },
   getClickrValues: function() {
-    this.state.particleCore.getVariable('timeDown', function(err, data) {
-      console.log(data);
+    var self = this;
+
+    this.state.particleCore.getVariable('settings', function(err, data) {
+      console.log('Settings ', data);
+      var values = data.result.split(',');
+
+      self.setState({
+        startPos: values[0]
+      });
+      self.setState({
+        clickPos: values[1]
+      });
+      self.setState({
+        timeDown: values[2] / timeDownConversion
+      });
     });
+    /*this.state.particleCore.getVariable('startPos', function(err, data) {
+      console.log('Start ', data);
+    });
+    this.state.particleCore.getVariable('clickPos', function(err, data) {
+      console.log('Click ', data);
+    });
+    this.state.particleCore.getVariable('timeDown', function(err, data) {
+      console.log('Time Down ', data);
+    });*/
   },
   render: function() {
     return (
