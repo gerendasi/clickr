@@ -29,6 +29,8 @@ var gulp = require('gulp'),
 	sourceSASSFolder = sourceFolder + '/scss'
 	sourceSASS = sourceSASSFolder + '/styles.scss',
 	destCSSFolder = publicFolder + '/css/',
+	sourceImagesFolder = sourceFolder + '/images',
+	destImagesFolder = publicFolder + '/images',
 	sourceFontsFolder = sourceFolder + '/fonts',
 	destFontsFolder = publicFolder + '/fonts';
 
@@ -83,6 +85,14 @@ gulp.task('styles', function() {
 });
 
 /* -----------------------------------
+ * 	 Images copying
+ * ----------------------------------- */
+gulp.task('copyimages', function() {
+   gulp.src(sourceImagesFolder + '/**/*')
+   .pipe(gulp.dest(destImagesFolder));
+});
+
+/* -----------------------------------
  * 	 Font copying
  * ----------------------------------- */
 gulp.task('copyfonts', function() {
@@ -103,6 +113,10 @@ gulp.task('copytemplate', function() {
  * ----------------------------------- */
 gulp.task('watch', function() {
   gulp.watch(sourceSASSFolder + '/**/*', ['styles']);
+});
+
+gulp.task('watchimages', function() {
+  gulp.watch(sourceImagesFolder + '/**/*', ['copyimages']);
 });
 
 gulp.task('watchtemplate', function() {

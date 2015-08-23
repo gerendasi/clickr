@@ -11,7 +11,9 @@ The Clickr app uses:
 * React - our front end app is built with the React framework to keep track of application states. We don't do anything too wild or complicated at the moment, so it's largely keeping things simple and well structured for a single page web app.
 
 ## How to build and run Clickr
-1. Ensure you have Node installed on your development environment!
+1. Ensure you have Node installed on your development environment! At the time of writing, you will need Node version 0.10.26 for the Spark npm module to work. If you have a later version of Node installed, you can set up multiple versions of Node to run using the Node manager "n":
+    1. Run `npm install -g n` to install the Node manager (this only works on Mac)
+    2. Run `sudo n 0.10.26` in the folder with Clickr to install that version of Node.
 2. Clone this git repo into your preferred folder for projects.
 3. Open up your Terminal/Command Prompt and navigate into the folder you clones the project (super simple if you cloned via the command line, you're almost there already!).
 4. Type in `npm install` (or if you are on Mac, I'd recommend `sudo npm install` as some of the dependencies may require admin priveleges). This command reads package.json and installs all of the required dependencies Clickr needs to run.
