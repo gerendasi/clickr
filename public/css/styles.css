@@ -2,7 +2,8 @@
   background-image: linear-gradient(0deg, #ffffff, #9d9c9c);
   background-repeat: no-repeat; }
 
-.common-box-shadow, .form-elem input[type="range"]::-webkit-slider-thumb, .form-elem input[type="range"]::-moz-range-thumb, .form-elem input[type="range"]::-ms-thumb, .btn {
+.common-box-shadow, .form-elem input[type="range"]::-webkit-slider-thumb, .form-elem input[type="range"]::-moz-range-thumb, .form-elem input[type="range"]::-ms-thumb, .btn,
+a.btn {
   -moz-box-shadow: 2px 2px 7px 0px #899599;
   -webkit-box-shadow: 2px 2px 7px 0px #899599;
   box-shadow: 2px 2px 7px 0px #899599; }
@@ -37,16 +38,53 @@ a:hover, a:active, a:focus {
 
 .container {
   margin: 0 auto;
-  max-width: 720px;
   text-align: center;
   width: 100%; }
 
-.the-clickr {
+.navigator {
+  background-color: #333;
+  height: 50px; }
+  .navigator__heading {
+    color: #fff;
+    line-height: 50px;
+    margin: 0;
+    padding: 0; }
+  .navigator .menu {
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 0; }
+
+.menu {
+  color: #fff; }
+  .menu__toggle {
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    width: 50px; }
+  .menu__links {
+    background: #888;
+    text-align: left;
+    width: 200px; }
+    .menu__links ul, .menu__links li {
+      margin: 0;
+      padding: 0; }
+    .menu__links li {
+      margin: 0;
+      padding: 5px; }
+
+.viewer {
   padding: 30px 0; }
+
+.the-clickr {
+  padding: 0 0 30px 0; }
   .the-clickr__help-text {
     padding: 20px 0 0;
     font-size: 14.4px;
     font-size: 0.9rem; }
+
+.softap__message {
+  padding: 0 0 1em; }
 
 .box {
   background: rgba(255, 255, 255, 0.2);
@@ -99,7 +137,8 @@ a:hover, a:active, a:focus {
     height: 30px;
     width: 15px; }
 
-.btn {
+.btn,
+a.btn {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
   background: -moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
   background: -webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
@@ -119,7 +158,8 @@ a:hover, a:active, a:focus {
   margin: 0 0.5em;
   padding: 10px 20px;
   text-decoration: none; }
-  .btn:active {
+  .btn:active,
+  a.btn:active {
     background-color: #111; }
 
 .btn--clickr {

@@ -1,4 +1,5 @@
-.btn {
+.btn,
+a.btn {
     @extend .common-box-shadow;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
     background: -moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);

@@ -36,17 +36,17 @@ void loadSettingsFromEEPROM() {
 
 void setup() {
   // Servo pin allocation
-  myservo.attach(A0);
+  myservo.attach(D0);
 
   // Publically accessible functions
-  Spark.function("settings", setClickrSettings);
-  Spark.function("press", press);
+  Particle.function("settings", setClickrSettings);
+  Particle.function("press", press);
 
   // Publically accessible variables
-  Spark.variable("startPos", &startPos, INT);
-  Spark.variable("clickPos", &clickPos, INT);
-  Spark.variable("timeDown", &timeDown, INT);
-  Spark.variable("settings", &settingsBundle, STRING);
+  Particle.variable("startPos", &startPos, INT);
+  Particle.variable("clickPos", &clickPos, INT);
+  Particle.variable("timeDown", &timeDown, INT);
+  Particle.variable("settings", &settingsBundle, STRING);
   
   loadSettingsFromEEPROM();
 }
@@ -55,42 +55,42 @@ void loop() {
 }
 
 int toStart() {
-	myservo.write(startPos);
+  myservo.write(startPos);
 
-	return 0;
+  return 0;
 }
 
 int press(String value) {
-	myservo.write(clickPos);
-	delay(timeDown);
-	myservo.write(startPos);
-	
-	return 0;
+  myservo.write(clickPos);
+  delay(timeDown);
+  myservo.write(startPos);
+  
+  return 0;
 }
 
 // Values parses in "startValue, clickValue, timeDownValue"
 int setClickrSettings(String values) {
-	String startValue = "";
-	String clickValue = "";
-	String timeDownValue = "";
-	
-	int startPoint = 0;
-	int currentPoint = values.indexOf(',');
-	int i = 0;
+  String startValue = "";
+  String clickValue = "";
+  String timeDownValue = "";
+  
+  int startPoint = 0;
+  int currentPoint = values.indexOf(',');
+  int i = 0;
 
-	while (currentPoint != -1) {
-		if (i == 0) {
-			startValue += values.substring(startPoint, currentPoint);
-		} else if (i == 1) {
-			clickValue += values.substring(startPoint, currentPoint);
-		} else if (i == 2) {
-			timeDownValue += values.substring(startPoint, currentPoint);
-		}
+  while (currentPoint != -1) {
+    if (i == 0) {
+      startValue += values.substring(startPoint, currentPoint);
+    } else if (i == 1) {
+      clickValue += values.substring(startPoint, currentPoint);
+    } else if (i == 2) {
+      timeDownValue += values.substring(startPoint, currentPoint);
+    }
 
-		startPoint = currentPoint + 1;
-		currentPoint = values.indexOf(',', startPoint);
-		i++;
-	}
+    startPoint = currentPoint + 1;
+    currentPoint = values.indexOf(',', startPoint);
+    i++;
+  }
 
     startPos = startValue.toInt();
     clickPos = clickValue.toInt();

@@ -32,6 +32,10 @@
     "browser-request": "^0.3.3",
     "jquery": "^2.1.4",
     "react": "^0.13.3",
-    "spark": "^0.5.10"
+    "spark": "^0.5.10",
+    "node-rsa": "^0.2.23",
+    "nconf": "^0.7.1",
+    "browserify-fs": "^1.0.0",
+    "react-router": "^1.0.0-rc1"
   }
 }

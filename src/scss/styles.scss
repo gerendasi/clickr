@@ -33,12 +33,16 @@ a:hover, a:active, a:focus {
 }
 .container {
     margin: 0 auto;
-    max-width: 720px;
+    //max-width: 720px;
     text-align: center;
     width: 100%;
 }
 
+@import "navigator";
+@import "menu";
+@import "viewer";
 @import "the-clickr";
+@import "softap";
 @import "box";
 @import "form-elem";
 @import "btn";
