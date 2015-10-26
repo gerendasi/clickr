@@ -21,7 +21,7 @@ var React = require('react'),
             <div className="menu__toggle" onClick={this.toggleMenu}>MENU</div>
             <div className={this.state.visible ? "menu__links is-visible" : "menu__links is-hidden"}>
               <ul>
-                <li><Link to="/welcome" onClick={this.toggleMenu}>Welcome</Link></li>
+                <li><Link to="/login" onClick={this.toggleMenu}>Login</Link></li>
                 <li><Link to="/clickr" onClick={this.toggleMenu}>Clickr</Link></li>
                 <li><Link to="/connect" onClick={this.toggleMenu}>Connect</Link></li>
               </ul>

@@ -6,7 +6,8 @@ var React = require('react'),
 
 var DataStore = require('./dataStore'),
 
-    WelcomeScreen = require('./screens/welcomeScreen'),
+    LoginScreen = require('./screens/loginScreen'),
+    SignupScreen = require('./screens/signupScreen'),
     SoftAPScreen = require('./screens/softapScreen'),
     NoMatchScreen = require('./screens/noMatchScreen'),
     ClickrScreen = require('./screens/clickrScreen'),
@@ -15,6 +16,8 @@ var DataStore = require('./dataStore'),
 
 var App = React.createClass({
   render: function() {
+    var recognised = DataStore.get('particleID') ? (<Link to="/clickr" className="btn btn--connect" onClick={this.toggleMenu}>Welcome back! Visit your Clickr.</Link>) : (<Link to="/connect" className="btn btn--connect" onClick={this.toggleMenu}>Connect</Link>);
+
     return (
       <div>
         <div className="navigator">
@@ -23,7 +26,7 @@ var App = React.createClass({
           <Menu />
         </div>
         <div className="viewer">
-          {this.props.children}
+          {this.props.children || recognised}
         </div>
       </div>
     )
@@ -33,7 +36,8 @@ var App = React.createClass({
 React.render((
   <Router>
     <Route path="/" component={App}>
-      <Route path="welcome" component={WelcomeScreen}/>
+      <Route path="login" component={LoginScreen}/>
+      <Route path="signup" component={SignupScreen}/>
       <Route path="connect" component={SoftAPScreen}/>
       <Route path="clickr" component={ClickrScreen}/>
       <Route path="*" component={NoMatchScreen}/>

@@ -88058,7 +88058,8 @@ var React = require('react'),
 
 var DataStore = require('./dataStore'),
 
-    WelcomeScreen = require('./screens/welcomeScreen'),
+    LoginScreen = require('./screens/loginScreen'),
+    SignupScreen = require('./screens/signupScreen'),
     SoftAPScreen = require('./screens/softapScreen'),
     NoMatchScreen = require('./screens/noMatchScreen'),
     ClickrScreen = require('./screens/clickrScreen'),
@@ -88067,6 +88068,8 @@ var DataStore = require('./dataStore'),
 
 var App = React.createClass({displayName: "App",
   render: function() {
+    var recognised = DataStore.get('particleID') ? (React.createElement(Link, {to: "/clickr", className: "btn btn--connect", onClick: this.toggleMenu}, "Welcome back! Visit your Clickr.")) : (React.createElement(Link, {to: "/connect", className: "btn btn--connect", onClick: this.toggleMenu}, "Connect"));
+
     return (
       React.createElement("div", null, 
         React.createElement("div", {className: "navigator"}, 
@@ -88075,7 +88078,7 @@ var App = React.createClass({displayName: "App",
           React.createElement(Menu, null)
         ), 
         React.createElement("div", {className: "viewer"}, 
-          this.props.children
+          this.props.children || recognised
         )
       )
     )
@@ -88085,7 +88088,8 @@ var App = React.createClass({displayName: "App",
 React.render((
   React.createElement(Router, null, 
     React.createElement(Route, {path: "/", component: App}, 
-      React.createElement(Route, {path: "welcome", component: WelcomeScreen}), 
+      React.createElement(Route, {path: "login", component: LoginScreen}), 
+      React.createElement(Route, {path: "signup", component: SignupScreen}), 
       React.createElement(Route, {path: "connect", component: SoftAPScreen}), 
       React.createElement(Route, {path: "clickr", component: ClickrScreen}), 
       React.createElement(Route, {path: "*", component: NoMatchScreen})
@@ -88093,7 +88097,7 @@ React.render((
   )
 ), document.getElementById('app'));
 
-},{"./dataStore":"/Users/patcat/Web/Clickr/clickr/src/js/dataStore.js","./menu":"/Users/patcat/Web/Clickr/clickr/src/js/menu.js","./screens/clickrScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/clickrScreen.js","./screens/noMatchScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/noMatchScreen.js","./screens/softapScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/softapScreen.js","./screens/welcomeScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/welcomeScreen.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","react-router":"/Users/patcat/Web/Clickr/clickr/node_modules/react-router/lib/index.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSeconds.js":[function(require,module,exports){
+},{"./dataStore":"/Users/patcat/Web/Clickr/clickr/src/js/dataStore.js","./menu":"/Users/patcat/Web/Clickr/clickr/src/js/menu.js","./screens/clickrScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/clickrScreen.js","./screens/loginScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/loginScreen.js","./screens/noMatchScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/noMatchScreen.js","./screens/signupScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/signupScreen.js","./screens/softapScreen":"/Users/patcat/Web/Clickr/clickr/src/js/screens/softapScreen.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","react-router":"/Users/patcat/Web/Clickr/clickr/node_modules/react-router/lib/index.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/clickrSeconds.js":[function(require,module,exports){
 var React = require('react'),
 	ClickrSeconds = React.createClass({displayName: "ClickrSeconds",
 	getDefaultProps: function() {
@@ -88261,7 +88265,7 @@ var React = require('react'),
             React.createElement("div", {className: "menu__toggle", onClick: this.toggleMenu}, "MENU"), 
             React.createElement("div", {className: this.state.visible ? "menu__links is-visible" : "menu__links is-hidden"}, 
               React.createElement("ul", null, 
-                React.createElement("li", null, React.createElement(Link, {to: "/welcome", onClick: this.toggleMenu}, "Welcome")), 
+                React.createElement("li", null, React.createElement(Link, {to: "/login", onClick: this.toggleMenu}, "Login")), 
                 React.createElement("li", null, React.createElement(Link, {to: "/clickr", onClick: this.toggleMenu}, "Clickr")), 
                 React.createElement("li", null, React.createElement(Link, {to: "/connect", onClick: this.toggleMenu}, "Connect"))
               )
@@ -88449,6 +88453,42 @@ var React = require('react'),
 
 module.exports = ConnectedScreen;
 
+},{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","react-router":"/Users/patcat/Web/Clickr/clickr/node_modules/react-router/lib/index.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/screens/loginScreen.js":[function(require,module,exports){
+var React = require('react'),
+	ReactRouter = require('react-router'),
+    Router = ReactRouter.Router,
+    Route = ReactRouter.Route,
+    Link = ReactRouter.Link,
+	LoginScreen = React.createClass({displayName: "LoginScreen",
+	getInitialState: function() {
+		return {
+		}
+	},
+	getDefaultProps: function() {
+		callback: null
+	},
+	render: function() {
+		return (
+			React.createElement("div", {className: "box"}, 
+				React.createElement("div", {className: "form-elem form-elem--email"}, 
+					React.createElement("label", {for: "loginEmail", className: "form-elem__label"}, "E-mail"), 
+					React.createElement("input", {id: "loginEmail", className: "form-elem__input", type: "text", onChange: this.handleChange})
+				), 
+				React.createElement("div", {className: "form-elem form-elem--password"}, 
+					React.createElement("label", {for: "loginPassword", className: "form-elem__label"}, "Password"), 
+					React.createElement("input", {id: "loginPassword", className: "form-elem__input", type: "password", onChange: this.handleChange})
+				), 
+
+				React.createElement("div", {className: "btn btn--submit"}, "Login"), 
+				React.createElement("p", null, "Need an account?"), 
+				React.createElement(Link, {to: "/signup", className: "btn btn--submit"}, "Signup")
+			)
+		)
+	}
+});
+
+module.exports = LoginScreen;
+
 },{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","react-router":"/Users/patcat/Web/Clickr/clickr/node_modules/react-router/lib/index.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/screens/noMatchScreen.js":[function(require,module,exports){
 var React = require('react'),
 	NoMatchScreen = React.createClass({displayName: "NoMatchScreen",
@@ -88529,7 +88569,41 @@ var React = require('react'),
 
 module.exports = ReadyScreen;
 
-},{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/screens/softapScreen.js":[function(require,module,exports){
+},{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/screens/signupScreen.js":[function(require,module,exports){
+var React = require('react'),
+	ReactRouter = require('react-router'),
+    Router = ReactRouter.Router,
+    Route = ReactRouter.Route,
+    Link = ReactRouter.Link,
+	SignupScreen = React.createClass({displayName: "SignupScreen",
+	getInitialState: function() {
+		return {
+		}
+	},
+	getDefaultProps: function() {
+		callback: null
+	},
+	render: function() {
+		return (
+			React.createElement("div", {className: "box"}, 
+				React.createElement("div", {className: "form-elem form-elem--email"}, 
+					React.createElement("label", {for: "loginEmail", className: "form-elem__label"}, "E-mail"), 
+					React.createElement("input", {id: "loginEmail", className: "form-elem__input", type: "text", onChange: this.handleChange})
+				), 
+				React.createElement("div", {className: "form-elem form-elem--password"}, 
+					React.createElement("label", {for: "loginPassword", className: "form-elem__label"}, "Password"), 
+					React.createElement("input", {id: "loginPassword", className: "form-elem__input", type: "password", onChange: this.handleChange})
+				), 
+
+				React.createElement("div", {className: "btn btn--submit"}, "Signup")
+			)
+		)
+	}
+});
+
+module.exports = SignupScreen;
+
+},{"react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","react-router":"/Users/patcat/Web/Clickr/clickr/node_modules/react-router/lib/index.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/screens/softapScreen.js":[function(require,module,exports){
 var React = require('react'),
 	SoftAPConnector = require('../softAPConnector'),
 
@@ -88582,33 +88656,7 @@ var React = require('react'),
 
 module.exports = SSIDScreen;
 
-},{"../ssidOption":"/Users/patcat/Web/Clickr/clickr/src/js/ssidOption.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/screens/welcomeScreen.js":[function(require,module,exports){
-var React = require('react'),
-	ReactRouter = require('react-router'),
-    Router = ReactRouter.Router,
-    Route = ReactRouter.Route,
-    Link = ReactRouter.Link,
-	DataStore = require('../dataStore'),
-	WelcomeScreen = React.createClass({displayName: "WelcomeScreen",
-	getInitialState: function() {
-		return {
-		}
-	},
-	getDefaultProps: function() {
-	},
-	render: function() {
-		var recognised = DataStore.get('particleID') ? (React.createElement(Link, {to: "/clickr", className: "btn btn--connect", onClick: this.toggleMenu}, "Welcome back! Visit your Clickr.")) : (React.createElement(Link, {to: "/connect", className: "btn btn--connect", onClick: this.toggleMenu}, "Connect"));
-		return (
-			React.createElement("div", null, 
-				recognised
-			)
-		)
-	}
-});
-
-module.exports = WelcomeScreen;
-
-},{"../dataStore":"/Users/patcat/Web/Clickr/clickr/src/js/dataStore.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js","react-router":"/Users/patcat/Web/Clickr/clickr/node_modules/react-router/lib/index.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/softAPConnector.js":[function(require,module,exports){
+},{"../ssidOption":"/Users/patcat/Web/Clickr/clickr/src/js/ssidOption.js","react":"/Users/patcat/Web/Clickr/clickr/node_modules/react/react.js"}],"/Users/patcat/Web/Clickr/clickr/src/js/softAPConnector.js":[function(require,module,exports){
 (function (process,__filename){
 var React = require('react'),
 	SoftAPSetup = require('./softapsetup'),

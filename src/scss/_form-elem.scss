@@ -1,8 +1,32 @@
 .form-elem {
+	padding: 0 0 1em;
+	text-align: left;
+
+	&__label {
+		color: #333;
+		display: block;
+		padding: 0.5em 0.75em;
+		@include font-size(1.05);
+	}
+
+	&__currentLabel {
+		text-align: center;
+	}
+
     input[type="text"],
+    input[type="password"] {
+    	border: 1px solid $form-border-colour;
+    	box-sizing: border-box;
+    	padding: 0.5em 0.75em;
+    	text-align: left;
+    	@include font-size(1.25);
+    }
+    
+    input[type="text"],
+    input[type="password"],
     &__currentLabel {
-    	text-align: center;
-    	@include font-size(1);
+    	color: #666;
+    	width: 100%;
     }
 
     &__help-text {
