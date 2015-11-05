@@ -46,7 +46,7 @@ void setup() {
   Particle.variable("startPos", &startPos, INT);
   Particle.variable("clickPos", &clickPos, INT);
   Particle.variable("timeDown", &timeDown, INT);
-  Particle.variable("settings", &settingsBundle, STRING);
+  Particle.variable("settings", settingsBundle, STRING);
   
   loadSettingsFromEEPROM();
 }
